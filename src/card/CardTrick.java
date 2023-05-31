@@ -67,7 +67,7 @@ public class CardTrick {
         }
         
         if(isLuckyCard) {
-            System.out.println("You found the card!");
+            System.out.println("Winner!");
         }else {
             System.out.println("keep trying!");
         }
