@@ -9,10 +9,9 @@ package card;
  * and then asks the user to pick a card and searches the array of cards
  * for the match to the user's card. To be used as starting code in ICE 1
  * @author srinivsi
- *@modifier Gaganpreet Kaur Dhaliwal
+ *@modifier Gaganpreet Kaur Dhaliwal, Student ID: 991695875
  */
 import java.util.Random;
-import java.util.Scanner;
 public class CardTrick {
     
     public static void main(String[] args)
@@ -31,42 +30,21 @@ public class CardTrick {
             magicHand[i]=c;
         }
           
-  
-        //insert code to ask the user for Card value and suit, create their card
-        Scanner scan = new Scanner(System.in);
-        
-        System.out.print("Enter a card value (1-13): ");
-        int value = scan.nextInt();
-        scan.nextLine();
-        System.out.print("Enter a card suit (Hearts, Diamonds, Spades, Clubs): ");
-        String suit = scan.nextLine();
-
-        Card userCard = new Card();
-        userCard.setValue(value);  
-        userCard.setSuit(suit);
-        // and search magicHand here
-        boolean matchFound = false;
-        for (Card card : magicHand) {
-            if (card.getValue() == userCard.getValue() && card.getSuit().equalsIgnoreCase(userCard.getSuit())) {
-                matchFound = true;
-                break;
-            }
-        }
         
         Card luckyCard= new Card();
         luckyCard.setValue(9);
         luckyCard.setSuit("Clubs");
         
-        boolean isluckyCard = (luckyCard.getValue() == userCard.getValue && luckyCard.getSuit().equalsIgnoreCase(userCard.getSuit()));
-        
-        //Then report the result here
-        if (matchFound) {
-            System.out.println("Congratulations! Your card is in the magic hand.");
-        } else {
-            System.out.println("Sorry, your card is not in the magic hand.");
+          boolean matchFound = false;
+        for (Card card : magicHand) {
+            if (card.getValue() == luckyCard.getValue() && card.getSuit().equalsIgnoreCase(luckyCard.getSuit())) {
+                matchFound = true;
+                break;
+            }
         }
         
-        if(isLuckyCard) {
+       
+        if(matchFound) {
             System.out.println("Winner!");
         }else {
             System.out.println("keep trying!");
