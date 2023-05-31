@@ -10,6 +10,8 @@ package card;
  * for the match to the user's card. To be used as starting code in ICE 1
  * @author srinivsi
  */
+import java.util.Random;
+import java.util.Scanner;
 public class CardTrick {
     
     public static void main(String[] args)
@@ -19,13 +21,52 @@ public class CardTrick {
         for (int i=0; i<magicHand.length; i++)
         {
             Card c = new Card();
-            //c.setValue(insert call to random number generator here)
-            //c.setSuit(Card.SUITS[insert call to random number between 0-3 here])
+             int randomValue = generateNumber(1, 13);
+            String randomSuit = Card.SUITS[generateNumber(0, 3)];
+            
+            c.setValue(randomValue);
+            c.setSuit(randomSuit);
+            
+            magicHand[i]=c;
         }
-        
+          
+  
         //insert code to ask the user for Card value and suit, create their card
+        Scanner scan = new Scanner(System.in);
+        
+        System.out.print("Enter a card value (1-13): ");
+        int value = scan.nextInt();
+        scan.nextLine();
+        System.out.print("Enter a card suit (Hearts, Diamonds, Spades, Clubs): ");
+        String suit = scan.nextLine();
+
+        Card userCard = new Card();
+        userCard.setValue(value);  
+        userCard.setSuit(suit);
         // and search magicHand here
+        boolean matchFound = false;
+        for (Card card : magicHand) {
+            if (card.getValue() == userCard.getValue() && card.getSuit().equalsIgnoreCase(userCard.getSuit())) {
+                matchFound = true;
+                break;
+            }
+        }
         //Then report the result here
+        if (matchFound) {
+            System.out.println("Congratulations! Your card is in the magic hand.");
+        } else {
+            System.out.println("Sorry, your card is not in the magic hand.");
+        }
+        System.out.println("The deck of randomly generated cards was:");
+        for (int i = 0; i < magicHand.length; i++) {
+            Card card = magicHand[i];
+            System.out.println("Card " + (i + 1) + ": " + card.getValue() + " of " + card.getSuit());
+        }
+    
     }
     
+    public static int generateNumber(int min, int max){
+        Random rand= new Random();
+        return rand.nextInt(max - min + 1) + min;
+    }
 }
